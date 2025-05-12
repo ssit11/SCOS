@@ -1,2 +1,2 @@
 # SCOS
-Strategic Command Operations Suite (SCOS) is a comprehensive software platform designed for the detailed planning, coordination, and execution of military operations. 
+Strategic Command Operations Suite (SCOS) is a comprehensive software platform designed for the detailed planning, coordination, and execution of military operations. Tailored for joint and combined forces, SCOS enables seamless integration of multiple branches, providing real-time management of resources, timelines, and mission objectives to ensure mission success and operational efficiency.
