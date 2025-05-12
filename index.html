@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Command Operations Suite</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        .equipment-options img {
+            width: 100px;
+            height: auto;
+        }
+        .equipment-options label {
+            display: inline-block;
+            margin-right: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Strategic Command Operations Suite</h1>
+        <nav>
+            <ul>
+                <li><a href="#operations">Operations</a></li>
+                <li><a href="#timeline">Timeline</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#reports">Reports</a></li>
+                <li><a href="#equipment">Equipment</a></li>
+                <li><a href="#map-page">Plot Maneuvers</a></li> <!-- Link to the Map Page -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Operations Section -->
+        <section id="operations">
+            <h2>Operations Overview</h2>
+            <form id="operation-form">
+                <label for="operation-name">Operation Name:</label>
+                <input type="text" id="operation-name" name="operation-name" required>
+                <label for="operation-type">Operation Type:</label>
+                <select id="operation-type" name="operation-type">
+                    <option value="offensive">Offensive</option>
+                    <option value="defensive">Defensive</option>
+                    <option value="reconnaissance">Reconnaissance</option>
+                </select>
+                <label for="branches">Branches Involved:</label>
+                <input type="text" id="branches" name="branches" placeholder="e.g., Army, Navy, Air Force" required>
+                <button type="submit">Save Operation</button>
+            </form>
+
+
+        <!-- Equipment Selection Section -->
+        <section id="equipment">
+            <h2>Equipment Selection</h2>
+            <form id="equipment-form">
+                <div class="equipment-options">
+                    <label>
+                        <input type="radio" name="equipment" value="T-72B3">
+                        <img src="https://i.ibb.co/S7nf3V1C/image.png" alt="T-72B3">
+                        <p>T-72B3</p>
+                        <small>Main Battle Tank; upgraded fire control and armor.</small>
+                    </label>
+                    <label>
+                        <input type="radio" name="equipment" value="T-90A">
+                        <img src="https://i.ibb.co/JRVcv2w5/image.png" alt="T-90A">
+                        <p>T-90A</p>
+                        <small>Main Battle Tank; proven combat performance and ERA armor.</small>
+                    </label>
+                    <label>
+                        <input type="radio" name="equipment" value="BMP-2">
+                        <img src="https://i.ibb.co/8g1mVB3T/image.png" alt="BMP-2">
+                        <p>BMP-2</p>
+                        <small>Infantry Fighting Vehicle; 30mm cannon and ATGM capability.</small>
+                    </label>
+                    <label>
+                        <input type="radio" name="equipment" value="BTR-80">
+                        <img src="https://i.ibb.co/Vc33vGHV/image.png" alt="BTR-80">
+                        <p>BTR-80</p>
+                        <small>Armored Personnel Carrier; 8x8 wheeled, amphibious.</small>
+                    </label>
+                    <label>
+                        <input type="radio" name="equipment" value="2S19 Msta-S">
+                        <img src="https://i.ibb.co/Q7wLPYh0/image.png" alt="2S19 Msta-S">
+                        <p>2S19 Msta-S</p>
+                        <small>152mm Self-Propelled Howitzer; artillery support.</small>
+                    </label>
+                    <label>
+                        <input type="radio" name="equipment" value="BM-21 Grad">
+                        <img src="https://i.ibb.co/cSv5tysJ/image.png" alt="BM-21 Grad">
+                        <p>BM-21 Grad</p>
+                        <small>122mm Multiple Rocket Launcher; saturation firepower.</small>
+                    </label>
+                    <label>
+                        <input type="radio" name="equipment" value="ZSU-23-4 Shilka">
+                        <img src="https://i.ibb.co/zT1FCRWq/image.png" alt="ZSU-23-4 Shilka">
+                        <p>ZSU-23-4 Shilka</p>
+                        <small>Self-propelled anti-aircraft gun; 23mm autocannons.</small>
+                    </label>
+                    <label>
+                        <input type="radio" name="equipment" value="SA-13 Gopher">
+                        <img src="images/sa13.jpg" alt="SA-13 Gopher">
+                        <p>SA-13 Gopher</p>
+                        <small>Short-range mobile SAM system; IR-guided missiles.</small>
+                    </label>
+                </div>
+                <button type="submit">Select Equipment</button>
+            </form>
+        </section>
+
+
+        <!-- Preconfigured Resources Section -->
+        <section id="preconfigured">
+            <h2>Preconfigured Resources</h2>
+            <form id="preconfigured-form">
+                <label for="preconfigured-resource">Select Preconfigured Resource:</label>
+                <select id="preconfigured-resource">
+                    <option value="standard-infantry">Standard Infantry</option>
+                    <option value="elite-snipers">Elite Snipers</option>
+                    <option value="assault-vehicles">Assault Vehicles</option>
+                    <option value="medical-unit">Medical Unit</option>
+                </select>
+                <button type="submit">Add Resource</button>
+            </form>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline">
+            <h2>Operation Timeline</h2>
+            <div id="timeline-view">
+                <ul></ul>
+            </div>
+            <form id="timeline-form">
+                <label for="timeline-event">Event Name:</label>
+                <input type="text" id="timeline-event" name="timeline-event" required>
+                <label for="timeline-time">Time:</label>
+                <input type="datetime-local" id="timeline-time" name="timeline-time" required>
+                <button type="submit">Add Event</button>
+            </form>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources">
+            <h2>Resource Allocation</h2>
+            <form id="resource-form">
+                <label for="resource-name">Resource Name:</label>
+                <input type="text" id="resource-name" name="resource-name" required>
+                <label for="resource-type">Resource Type:</label>
+                <input type="text" id="resource-type" name="resource-type" required>
+                <label for="resource-quantity">Quantity:</label>
+                <input type="number" id="resource-quantity" name="resource-quantity" required>
+                <button type="submit">Add Resource</button>
+            </form>
+            <div id="resources-list"></div>
+        </section>
+
+        <!-- Map Page Section (Map for Plotting Maneuvers) -->
+        <section id="map-page">
+            <h2>Plot Maneuvers on the Map</h2>
+            <div id="map"></div>
+            <button id="clear-map">Clear Plot</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Strategic Command Operations Suite</p>
+    </footer>
+
+    <script>
+        // Initialize the Leaflet map for Plot Maneuvers
+        var map = L.map('map').setView([51.505, -0.09], 13);  // Coordinates of the map center
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Plotting Functionality
+        var drawnItems = new L.FeatureGroup().addTo(map);
+
+        // When clicking on the map, add a marker
+        map.on('click', function(e) {
+            L.marker(e.latlng).addTo(drawnItems);
+        });
+
+        // Clear the plot
+        document.getElementById('clear-map').addEventListener('click', function() {
+            drawnItems.clearLayers();
+        });
+
+        // Operation Form Submission
+        document.getElementById('operation-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('operation-name').value;
+            const type = document.getElementById('operation-type').value;
+            const branches = document.getElementById('branches').value;
+            alert(`Operation "${name}" of type "${type}" is planned with branches: ${branches}`);
+        });
+
+        // Equipment Form Submission
+        document.getElementById('equipment-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const selectedEquipment = document.querySelector('input[name="equipment"]:checked').value;
+            alert(`Equipment Selected: ${selectedEquipment}`);
+        });
+
+        // Preconfigured Form Submission
+        document.getElementById('preconfigured-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const resource = document.getElementById('preconfigured-resource').value;
+            alert(`Preconfigured Resource Selected: ${resource}`);
+        });
+    </script>
+</body>
+</html>
